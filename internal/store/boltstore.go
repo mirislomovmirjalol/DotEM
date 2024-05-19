@@ -2,18 +2,34 @@ package store
 
 import (
 	"go.etcd.io/bbolt"
+	"log"
+	"sync"
+)
+
+var (
+	instance *BoltDBStore
+	once     sync.Once
 )
 
 type BoltDBStore struct {
 	DB *bbolt.DB
 }
 
-func NewBoltDBStore(dbPath string) (*BoltDBStore, error) {
-	db, err := bbolt.Open(dbPath, 0600, nil)
-	if err != nil {
-		return nil, err
+func GetStore() *BoltDBStore {
+	once.Do(func() {
+		db, err := bbolt.Open("/Users/user/Projects/go/DotEM/DotEM.db", 0600, nil)
+		if err != nil {
+			log.Fatal("Failed to open database: ", err)
+		}
+		instance = &BoltDBStore{DB: db}
+	})
+	return instance
+}
+
+func (store *BoltDBStore) Close() {
+	if err := store.DB.Close(); err != nil {
+		log.Fatal("Failed to close database: ", err)
 	}
-	return &BoltDBStore{DB: db}, nil
 }
 
 func (store *BoltDBStore) Set(bucketName, key string, value []byte) error {
@@ -33,7 +49,11 @@ func (store *BoltDBStore) Get(bucketName, key string) ([]byte, error) {
 		if bucket == nil {
 			return bbolt.ErrBucketNotFound
 		}
-		value = bucket.Get([]byte(key))
+		bucketValue := bucket.Get([]byte(key))
+		if bucketValue != nil {
+			value = make([]byte, len(bucketValue))
+			copy(value, bucketValue)
+		}
 		return nil
 	})
 	return value, err
