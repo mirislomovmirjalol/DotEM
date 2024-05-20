@@ -3,7 +3,6 @@ package service
 import (
 	"encoding/json"
 	"github/mirislomovmirjalol/DotEM/internal/store"
-	"io/ioutil"
 	"os"
 )
 
@@ -30,7 +29,7 @@ func ExportData(filePath string) error {
 }
 
 func ImportData(filePath string) error {
-	fileData, err := ioutil.ReadFile(filePath)
+	fileData, err := os.ReadFile(filePath)
 	if err != nil {
 		return err
 	}
