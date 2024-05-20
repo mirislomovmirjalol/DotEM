@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"github/mirislomovmirjalol/DotEM/internal/store"
 	"os"
 )
@@ -43,4 +44,27 @@ func GetAllProjects() ([]string, error) {
 	}
 
 	return projects, nil
+}
+
+func UpdateProject(projectName string, filePath string) error {
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		return err
+	}
+
+	boltDBStore := store.GetStore()
+	defer boltDBStore.Close()
+
+	isExist, err := boltDBStore.IsExist("Projects", projectName)
+	if err != nil {
+		return err
+	}
+
+	if !isExist {
+		return errors.New("project does not exist")
+	}
+
+	err = boltDBStore.Set("Projects", projectName, data)
+
+	return nil
 }

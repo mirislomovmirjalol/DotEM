@@ -26,5 +26,5 @@ func handlePush(_ *cobra.Command, args []string) {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Project updated successfully")
+	fmt.Println("Data pushed successfully")
 }
