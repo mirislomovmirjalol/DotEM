@@ -74,3 +74,19 @@ func (store *BoltDBStore) GetKeys(bucketName string) ([]string, error) {
 	})
 	return keys, err
 }
+
+func (store *BoltDBStore) IsExist(bucketName string, key string) (bool, error) {
+	var isExist bool
+	err := store.DB.View(func(tx *bbolt.Tx) error {
+		bucket := tx.Bucket([]byte(bucketName))
+		if bucket == nil {
+			return bbolt.ErrBucketNotFound
+		}
+		bucketValue := bucket.Get([]byte(key))
+		if bucketValue != nil {
+			isExist = true
+		}
+		return nil
+	})
+	return isExist, err
+}
