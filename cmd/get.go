@@ -8,9 +8,11 @@ import (
 )
 
 var getCmd = &cobra.Command{
-	Use:  "get",
-	Args: cobra.ExactArgs(1),
-	Run:  getProject,
+	Use:   "get",
+	Short: "Get project by name",
+	Long:  `Get command designed to get project by name from .EM storage`,
+	Args:  cobra.ExactArgs(1),
+	Run:   getProject,
 }
 
 func init() {

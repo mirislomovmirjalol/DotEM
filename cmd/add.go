@@ -8,7 +8,8 @@ import (
 
 var addCmd = &cobra.Command{
 	Use:   "add",
-	Short: "Add command used for adding new project to DotEM",
+	Short: "Add new project to .EM",
+	Long:  "Add command designed to add new project to .EM storage with given name and file path",
 	Args:  cobra.ExactArgs(2),
 	Run:   addProject,
 }
