@@ -3,12 +3,6 @@ package store
 import (
 	"go.etcd.io/bbolt"
 	"log"
-	"sync"
-)
-
-var (
-	instance *BoltDBStore
-	once     sync.Once
 )
 
 type BoltDBStore struct {
@@ -16,14 +10,11 @@ type BoltDBStore struct {
 }
 
 func GetStore() *BoltDBStore {
-	once.Do(func() {
-		db, err := bbolt.Open("/Users/user/Projects/go/DotEM/DotEM.db", 0600, nil)
-		if err != nil {
-			log.Fatal("Failed to open database: ", err)
-		}
-		instance = &BoltDBStore{DB: db}
-	})
-	return instance
+	db, err := bbolt.Open("/Users/user/Projects/go/DotEM/DotEM.db", 0600, nil)
+	if err != nil {
+		log.Fatal("Failed to open database: ", err)
+	}
+	return &BoltDBStore{DB: db}
 }
 
 func (store *BoltDBStore) Close() {
