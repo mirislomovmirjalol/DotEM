@@ -2,11 +2,11 @@ package service
 
 import (
 	"github/mirislomovmirjalol/DotEM/internal/store"
-	"io/ioutil"
+	"os"
 )
 
 func AddProject(projectName string, filePath string) error {
-	data, err := ioutil.ReadFile(filePath)
+	data, err := os.ReadFile(filePath)
 	if err != nil {
 		return err
 	}
