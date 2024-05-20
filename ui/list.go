@@ -2,7 +2,6 @@ package ui
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
 	"github/mirislomovmirjalol/DotEM/internal/service"
 	"log"
 	"strings"
@@ -73,20 +72,16 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-var unfocused = lipgloss.NewStyle()
-var focused = lipgloss.NewStyle().
-	Foreground(lipgloss.Color("#a78bfa"))
-var navigationHelper = "" +
-	"Up / Down: Navigate | Enter: Select | Ctrl+C: Quit"
-
 func (m Model) View() string {
 	var b strings.Builder
 
 	if m.showDetail {
+		b.WriteString(title.Render(m.projects[m.cursor]))
+		b.WriteString("\n\n")
 		b.WriteString(m.detail)
 		return b.String()
 	}
-	b.WriteString(lipgloss.NewStyle().Padding(1, 8).Background(lipgloss.Color("#7e22ce")).Render("Projects"))
+	b.WriteString(title.Render("Projects"))
 	b.WriteString("\n\n")
 
 	for i, project := range m.projects {
