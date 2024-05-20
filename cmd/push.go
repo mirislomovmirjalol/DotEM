@@ -8,10 +8,11 @@ import (
 )
 
 var pushCmd = &cobra.Command{
-	Use:   "push",
-	Short: "Push environment to DotEM",
-	Long:  ``,
-	Run:   handlePush,
+	Use:     "push",
+	Short:   "Push environment to .EM",
+	Long:    `Push command designed to push environment from local environment file to .EM`,
+	Run:     handlePush,
+	Example: ".em push <project_name> <file_path>",
 }
 
 func init() {

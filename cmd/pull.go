@@ -8,10 +8,11 @@ import (
 )
 
 var pullCmd = &cobra.Command{
-	Use:   "pull",
-	Short: "Pull environment from DotEM",
-	Long:  `Pull environment from DotEM`,
-	Run:   handlePull,
+	Use:     "pull",
+	Short:   "Pull environment from .EM",
+	Long:    `Pull command designed to pull environment from .EM to local environment file`,
+	Run:     handlePull,
+	Example: ".em pull <project_name> <file_path>",
 }
 
 func init() {
