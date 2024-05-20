@@ -90,3 +90,25 @@ func (store *BoltDBStore) IsExist(bucketName string, key string) (bool, error) {
 	})
 	return isExist, err
 }
+
+func (store *BoltDBStore) GetKeysWithValue(bucketName string) (map[string]string, error) {
+	keys := make(map[string]string)
+	err := store.DB.View(func(tx *bbolt.Tx) error {
+		bucket := tx.Bucket([]byte(bucketName))
+		if bucket == nil {
+			return bbolt.ErrBucketNotFound
+		}
+		return bucket.ForEach(func(k, v []byte) error {
+			if v != nil {
+				keys[string(k)] = string(v)
+			} else {
+				keys[string(k)] = ""
+			}
+			return nil
+		})
+	})
+	if err != nil {
+		return nil, err
+	}
+	return keys, nil
+}

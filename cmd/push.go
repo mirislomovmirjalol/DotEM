@@ -13,6 +13,7 @@ var pushCmd = &cobra.Command{
 	Long:    `Push command designed to push environment from local environment file to .EM`,
 	Run:     handlePush,
 	Example: ".em push <project_name> <file_path>",
+	Args:    cobra.ExactArgs(2),
 }
 
 func init() {
