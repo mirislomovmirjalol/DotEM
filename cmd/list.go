@@ -26,7 +26,7 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 }
 
-func listProjects(cmd *cobra.Command, args []string) {
+func listProjects(_ *cobra.Command, _ []string) {
 	projects, err := service.GetAllProjects()
 	if err != nil {
 		log.Fatal(err)

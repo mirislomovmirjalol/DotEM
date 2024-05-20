@@ -17,7 +17,7 @@ func init() {
 	rootCmd.AddCommand(addCmd)
 }
 
-func addProject(cmd *cobra.Command, args []string) {
+func addProject(_ *cobra.Command, args []string) {
 	projectName := args[0]
 	filePath := args[1]
 

@@ -17,7 +17,7 @@ func init() {
 	rootCmd.AddCommand(getCmd)
 }
 
-func getProject(cmd *cobra.Command, args []string) {
+func getProject(_ *cobra.Command, args []string) {
 	projectName := args[0]
 
 	data, err := service.GetProject(projectName)
