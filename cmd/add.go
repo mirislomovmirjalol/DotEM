@@ -7,11 +7,12 @@ import (
 )
 
 var addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Add new project to .EM",
-	Long:  "Add command designed to add new project to .EM storage with given name and file path",
-	Args:  cobra.ExactArgs(2),
-	Run:   addProject,
+	Use:     "add",
+	Short:   "Add new project to .EM",
+	Long:    "Add command designed to add new project to .EM storage with given name and file path",
+	Args:    cobra.ExactArgs(2),
+	Run:     addProject,
+	Example: ".em add <project_name> <file_path>",
 }
 
 func init() {

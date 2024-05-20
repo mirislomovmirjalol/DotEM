@@ -11,10 +11,11 @@ import (
 )
 
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all projects",
-	Long:  `List command designed to list all projects from .EM storage`,
-	Run:   listProjects,
+	Use:     "list",
+	Short:   "List all projects",
+	Long:    `List command designed to list all projects from .EM storage`,
+	Run:     listProjects,
+	Example: ".em list",
 }
 
 func init() {
