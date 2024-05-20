@@ -11,6 +11,7 @@ var pullCmd = &cobra.Command{
 	Use:     "pull",
 	Short:   "Pull environment from .EM",
 	Long:    `Pull command designed to pull environment from .EM to local environment file`,
+	Args:    cobra.ExactArgs(2),
 	Run:     handlePull,
 	Example: ".em pull <project_name> <file_path>",
 }
