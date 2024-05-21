@@ -34,6 +34,16 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch msg := msg.(type) {
 		case tea.KeyMsg:
 			switch msg.Type {
+			case tea.KeyBackspace:
+				err := service.DeleteProject(m.projects[m.cursor])
+				if err != nil {
+					log.Fatal(err)
+				}
+				m.projects = append(m.projects[:m.cursor], m.projects[m.cursor+1:]...)
+				if m.cursor > 0 {
+					m.cursor--
+				}
+				return m, nil
 			case tea.KeyUp:
 				if m.cursor > 0 {
 					m.cursor--

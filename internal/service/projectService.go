@@ -68,3 +68,15 @@ func UpdateProject(projectName string, filePath string) error {
 
 	return nil
 }
+
+func DeleteProject(projectName string) error {
+	boltDBStore := store.GetStore()
+	defer boltDBStore.Close()
+
+	err := boltDBStore.Delete("Projects", projectName)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
