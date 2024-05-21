@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "website",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.378.0",
     "next": "^14.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.1",
