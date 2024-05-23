@@ -12,7 +12,7 @@ export function WelcomeSection(): JSX.Element {
                 Manage your environment files in local storage and export/import if needed.
                 Your Dynamic Environment Management Tool
             </p>
-            <div className="bg-gray-950 border border-primary p-4 w-full flex flex-col items-center justify-between rounded mt-4">
+            <div className="bg-gray-950 border-r-4 border-b-4 border-primary p-4 w-full flex flex-col items-center justify-between rounded mt-4">
                 <div className="flex items-center w-full justify-between">
                     <span className="mr-2">$</span>
                     <code className="w-full">
