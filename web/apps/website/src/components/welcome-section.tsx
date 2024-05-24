@@ -1,6 +1,6 @@
 import React from "react";
-import {Clipboard} from "lucide-react";
-import CopyButton from "./copy-button.tsx";
+import Link from "next/link";
+import {ExternalLink} from "lucide-react";
 
 export function WelcomeSection(): JSX.Element {
     return (
@@ -14,13 +14,13 @@ export function WelcomeSection(): JSX.Element {
             </p>
             <div className="bg-gray-950 border-r-4 border-b-4 border-primary p-4 w-full flex flex-col items-center justify-between rounded mt-4">
                 <div className="flex items-center w-full justify-between">
-                    <span className="mr-2">$</span>
                     <code className="w-full">
-                        brew install dotem
+                        Open installation guide
                     </code>
-                    <CopyButton value="brew install dotem">
-                        <Clipboard/>
-                    </CopyButton>
+                    <Link className="border p-2 rounded flex flex-row items-center" href="/docs">
+                        Open
+                        <ExternalLink className="ml-2" />
+                    </Link>
                 </div>
             </div>
         </div>
