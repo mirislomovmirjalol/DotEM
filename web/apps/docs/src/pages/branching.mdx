@@ -1,0 +1,25 @@
+# Branching Life Hack
+
+.EM currently doesn't support branching out of the box, but here's a cool life hack for handling branching in multiple projects.
+
+Instead of adding a project name as is, you can add it with an alias such as -prod, -test, or -dev. This allows you to manage different environments within the same project effectively.
+
+Example:
+
+Production environment:
+```bash copy
+dotem add my_project-prod /path/to/project/.env
+```
+Test environment:
+```bash copy
+dotem add my_project-test /path/to/project/.env
+```
+Development environment:
+```bash copy
+dotem add my_project-dev /path/to/project/.env
+```
+----
+
+For switching between environments, you can use the `.em pull <project-name> <path-to-env>` command with the alias you've set.
+
+This way, you can easily switch between different environments by referencing the appropriate alias.
