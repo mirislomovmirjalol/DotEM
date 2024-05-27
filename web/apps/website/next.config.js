@@ -6,7 +6,7 @@ module.exports = {
     return [
       {
         source: '/docs',
-        destination: 'http://docs.dotem.websit',
+        destination: 'http://docs.dotem.website',
         permanent: true,
       },
     ]
